@@ -29,13 +29,27 @@
       flex-direction: column;
     }
 
+    /*bottom border */
+
+    header, 
+    footer table td div {
+      color: var(--ash-grey);
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid var(--ash-grey);
+      padding-bottom: 0.3rem;
+      border-radius: 6px;
+    }
+
     header {
       background-color: var(--ash-grey);
       padding: 1.5rem;
       text-align: center;
       font-weight: 600;
       font-size: 1.25rem;
-      color: var(--dark-charcoal);
+      color: var(--dark-charcoal); /* override text color for header */
+      border-bottom: 2px solid var(--ash-grey); /* keep bottom border with same color */
+      padding-bottom: 0.3rem;
+      border-radius: 6px;
     }
 
     main {
@@ -65,7 +79,7 @@
 
   <main>
 
-   <!-- 
+  <!-- 
 <a href="https://minimittens.xyz/passwords-backup.txt" style="
   display: inline-block;
   background-color: #555555; /* ash grey */
@@ -79,7 +93,7 @@
   ">
   Backup Passwords
 </a> 
--->
+--!>
 
 
 
@@ -103,7 +117,11 @@
       <td align="center" valign="top" style="width: 34%;">
         <div>Created by Daniel. A.</div>
         <ul style="list-style: none; padding-left: 0; margin-top: 0.5em;">
-          <!-- <li>Alex M.</li> -->
+          <!-- <li>DNS check verified</li> 
+<!-- 
+This site is not for SSH, SQL injection, fuzzing, or Gobuster testing.
+Please use official training environments like Hack The Box or TryHackMe.
+-->
         </ul>
       </td>
 
