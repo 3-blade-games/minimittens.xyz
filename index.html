@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mini Mittens</title>
+  <style>
+    /* Colors */
+    :root {
+      --slate-grey: #2f4f4f;      /* slate grey background */
+      --ash-grey: #b2bebb;        /* lighter ash grey */
+      --dark-charcoal: #1a1a1a;   /* dark charcoal for footer */
+      --ash-font: #b2bebb;        /* ash color for font */
+    }
+
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--slate-grey);
+      color: var(--ash-font);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: var(--ash-grey);
+      padding: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--dark-charcoal);
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.1rem;
+      color: var(--ash-font);
+      padding: 2rem;
+      /* You can add some message or leave empty */
+    }
+
+    footer {
+      background-color: var(--dark-charcoal);
+      color: var(--ash-font);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to Mini Mittens!</h1>
-  <p>The tiniest paws on the internet.</p>
+  <header>
+    Site Under Maintenance
+  </header>
+
+  <main>
+    <!-- Scheduled Release October 31st 2025 -->
+  </main>
+
+  <footer>
+    made by Daniel .A.
+  </footer>
 </body>
 </html>
