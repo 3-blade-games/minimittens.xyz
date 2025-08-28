@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fundamentals</title>
+  <style>
+    /* Colours */
+    :root {
+      --slate-grey: #232323;      /* slate grey background */
+      --ash-grey: #555555;        /* lighter ash grey */
+      --dark-charcoal: #111111;   /* dark charcoal for footer */
+      --ash-font: #444444;        /* ash color for font */
+    }
+
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--slate-grey);
+      color: var(--ash-font);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /*bottom border */
+
+    header,
+    footer table td div {
+      color: var(--ash-grey);
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid var(--ash-grey);
+      padding-bottom: 0.3rem;
+      border-radius: 6px;
+    }
+
+    header {
+      background-color: var(--ash-grey);
+      padding: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--dark-charcoal); /* override text color for header */
+      border-bottom: 2px solid var(--ash-grey); /* keep bottom border with same color */
+      padding-bottom: 0.3rem;
+      border-radius: 6px;
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.1rem;
+      color: var(--ash-font);
+      padding: 2rem;
+    }
+
+    footer {
+      background-color: var(--dark-charcoal);
+      color: var(--ash-font);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Fundamentals - Under Maintenance
+  </header>
+
+  <main>
+
+  <!--
+<a href="https://minimittens.xyz/passwords-backup.txt" style="
+  display: inline-block;
+  background-color: #555555; /* ash grey */
+  color: #232323;            /* slate grey text */
+  border: none;
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  ">
+  Backup Passwords
+</a>
+--!>
+
+
+
+
+
+    <!-- Scheduled Release October 31st 2025 -->
+  </main>
+
+<footer>
+  <table width="100%">
+    <tr>
+      <!-- Left column -->
+      <td align="left" valign="top" style="width: 33%;">
+        <div>Domain: https://minimittens.xyz </div>
+        <ul style="list-style: none; padding-left: 0; margin-top: 0.5em;">
+          <!-- <li>Mini Mittens' site, uploaded to github.com</li> -->
+        </ul>
+      </td>
+
+      <!-- Center column -->
+      <td align="center" valign="top" style="width: 34%;">
+        <div>Created by Daniel. A.</div>
+        <ul style="list-style: none; padding-left: 0; margin-top: 0.5em;">
+          <li>Carwash Employee</li>
+          <!-- <li>DNS check verified</li>
+This site is not for SSH, SQL injection, fuzzing, or Gobuster testing.
+Please use official training environments like Hack The Box or TryHackMe.
+-->
+        </ul>
+      </td>
+
+      <!-- Right column -->
+      <td align="right" valign="top" style="width: 33%;">
+        <div>26-08-2025</div>
+      </td>
+    </tr>
+  </table>
+</footer>
+
+</body>
+</html>
