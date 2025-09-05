@@ -1,3 +1,13 @@
+User-agent: ia_archiver
+Disallow: /
 User-agent: *
 Disallow: /passwords-backup.txt
 Disallow: /archive/
+Disallow: /admin/
+Disallow: /admin-logs
+Disallow: /fundamentals
+Allow: /flag
+Disallow: /contact-us
+Disallow: /cgi-bin/
+Disallow: /backup/
+Allow: /index.html
