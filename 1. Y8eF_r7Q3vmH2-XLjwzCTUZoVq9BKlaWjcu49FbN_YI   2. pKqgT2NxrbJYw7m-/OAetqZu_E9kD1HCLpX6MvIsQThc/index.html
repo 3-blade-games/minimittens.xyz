@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Mittens - Daniel A.</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <meta name="description" content="Daniel A. - Physical pentesting, lockpicking, and creative problem solving." />
+  <style>
+    /* Colours */
+    :root {
+      --slate-grey: #232323;      /* slate grey background */
+      --ash-grey: #555555;        /* lighter ash grey */
+      --dark-charcoal: #111111;   /* dark charcoal for footer */
+      --ash-font: #444444;        /* ash color for font */
+      --light-text: #cccccc;      /* lighter text for readability */
+      --accent: #888888;          /* accent color */
+      --hover-accent: #999999;    /* hover states */
+    }
+
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--slate-grey);
+      color: var(--light-text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header/Navigation */
+    header {
+      background-color: var(--ash-grey);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark-charcoal);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--dark-charcoal);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--slate-grey);
+    }
+
+    /* Main Content */
+    main {
+      flex-grow: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: var(--light-text);
+      font-weight: 300;
+    }
+
+    .hero .subtitle {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .hero .tagline {
+      font-size: 1.1rem;
+      color: var(--ash-font);
+      max-width: 600px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: linear-gradient(145deg, #252525, #202020);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      animation: fadeInUp 0.8s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .section:nth-child(2) { animation-delay: 0.2s; }
+    .section:nth-child(3) { animation-delay: 0.4s; }
+    .section:nth-child(4) { animation-delay: 0.6s; }
+
+    .section h2 {
+      color: var(--light-text);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--ash-grey);
+      font-weight: 400;
+    }
+
+    .section p {
+      margin-bottom: 1rem;
+      color: var(--light-text);
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .skill-category {
+      background: var(--dark-charcoal);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--ash-grey);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .skill-category:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .skill-category h3 {
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+      font-size: 1.2rem;
+    }
+
+    .skill-category ul {
+      list-style: none;
+    }
+
+    .skill-category li {
+      padding: 0.3rem 0;
+      color: var(--light-text);
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .skill-category li:before {
+      content: "▸";
+      color: var(--ash-grey);
+      position: absolute;
+      left: 0;
+    }
+
+    /* Story highlight */
+    .story-highlight {
+      background: linear-gradient(135deg, var(--dark-charcoal), #1a1a1a);
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-highlight:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(45deg, transparent, rgba(136,136,136,0.1));
+      border-radius: 0 0 0 100px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-charcoal);
+      color: var(--ash-font);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .footer-section h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--ash-grey);
+    }
+
+    .footer-section p, .footer-section li {
+      color: var(--light-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--ash-grey);
+      color: var(--ash-font);
+      font-style: italic;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      main {
+        padding: 2rem 1rem;
+      }
+      
+      .section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/" class="logo">Mini Mittens</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/fundamentals">Fundamentals</a></li>
+        <li><a href="/blog">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Daniel A.</h1>
+      <p class="subtitle">Carwash Employee • Security Enthusiast • Problem Solver</p>
+      <p class="tagline">"Small oversights create big vulnerabilities - I find them so you can fix them."</p>
+    </section>
+
+    <section class="section">
+      <h2>What I Do</h2>
+      <p>I'm passionate about understanding how things work - and more importantly, how they break. Whether it's picking a lock, solving a Rubik's cube, or finding security gaps, I approach every challenge with curiosity and methodical thinking.</p>
+      
+      <p>Lately I've been diving deep into physical pentesting, practicing lock bypass techniques, social engineering, and access control testing in controlled environments. It's fascinating how the smallest oversight can create massive vulnerabilities.</p>
+      
+      <div class="story-highlight">
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Resourcefulness in Action</h3>
+        <p>One time I found an almost brand-new laptop in the trash. After some detective work, I retrieved the owner's data, securely wiped it clean, and discovered the only issue was a faulty battery. A $75 fix later, I had a $2000+ machine. That's the kind of problem-solving I bring to everything I do.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Skills & Interests</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Physical Security</h3>
+          <ul>
+            <li>Lock picking & bypass techniques</li>
+            <li>Social engineering testing</li>
+            <li>Access control assessment</li>
+            <li>Security gap identification</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Technical Skills</h3>
+          <ul>
+            <li>Linux/Kali security testing</li>
+            <li>Complete PC building & repair</li>
+            <li>OS installation & optimization</li>
+            <li>Hardware troubleshooting</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Problem Solving</h3>
+          <ul>
+            <li>Rubik's cube solving</li>
+            <li>Research & investigation</li>
+            <li>Game design thinking</li>
+            <li>Creative resourcefulness</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Philosophy</h2>
+      <p>I believe security isn't just about technology - it's about understanding human behavior, physical systems, and the unexpected ways they interact. Every system has vulnerabilities; the key is finding them before the wrong people do.</p>
+      
+      <p>Whether I'm working on cars at the carwash or testing security systems, I approach each task with the same attention to detail and systematic thinking. Both jobs teach you that small problems, left unaddressed, become big ones.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Domain Info</h3>
+        <p>https://minimittens.xyz</p>
+        <p>Hosted on GitHub Pages</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>About This Site</h3>
+        <p>Personal site and blog</p>
+        <p>Built with vanilla HTML, CSS, JS</p>
+        <p>Dark theme optimized</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Connect</h3>
+        <p>Exploring security, one lock at a time</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>Created by Daniel A. • Updated September 2025</p>
+    </div>
+  </footer>
+</body>
+</html>
