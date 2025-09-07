@@ -3,14 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fundamentals</title>
+  <title>Fundamentals - Mini Mittens</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <meta name="description" content="Core fundamentals of physical penetration testing - from initial engagement to final documentation. Essential principles and methodology." />
   <style>
     /* Colours */
     :root {
-      --slate-grey: #232323;      /* slate grey background */
-      --ash-grey: #555555;        /* lighter ash grey */
-      --dark-charcoal: #111111;   /* dark charcoal for footer */
-      --ash-font: #444444;        /* ash color for font */
+      --slate-grey: #232323;      
+      --ash-grey: #555555;        
+      --dark-charcoal: #111111;   
+      --ash-font: #444444;        
+      --light-text: #cccccc;      
+      --accent: #888888;          
+      --hover-accent: #999999;    
+      --cotton-candy: #ffaaff;    
+      --cotton-candy-dark: #cc88cc; 
+      --cotton-candy-glow: rgba(255, 170, 255, 0.3); 
     }
 
     /* Reset & base */
@@ -22,116 +30,528 @@
 
     body {
       background-color: var(--slate-grey);
-      color: var(--ash-font);
+      color: var(--light-text);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /*bottom border */
-
-    header,
-    footer table td div {
-      color: var(--ash-grey);
-      margin-bottom: 0.5rem;
-      border-bottom: 2px solid var(--ash-grey);
-      padding-bottom: 0.3rem;
-      border-radius: 6px;
-    }
-
+    /* Header/Navigation */
     header {
       background-color: var(--ash-grey);
-      padding: 1.5rem;
-      text-align: center;
-      font-weight: 600;
-      font-size: 1.25rem;
-      color: var(--dark-charcoal); /* override text color for header */
-      border-bottom: 2px solid var(--ash-grey); /* keep bottom border with same color */
-      padding-bottom: 0.3rem;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark-charcoal);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cotton-candy), var(--cotton-candy-dark));
+      border-radius: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--dark-charcoal);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
       border-radius: 6px;
     }
 
-    main {
-      flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.1rem;
-      color: var(--ash-font);
-      padding: 2rem;
+    .nav-links a:hover {
+      color: var(--slate-grey);
+      background-color: rgba(255, 170, 255, 0.1);
     }
 
+    .nav-links .current {
+      background: linear-gradient(135deg, var(--cotton-candy), var(--cotton-candy-dark));
+      color: var(--dark-charcoal);
+      font-weight: 600;
+      cursor: default;
+      box-shadow: 0 2px 8px var(--cotton-candy-glow);
+    }
+
+    /* Main Content */
+    main {
+      flex-grow: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    /* Page Header */
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--light-text);
+      font-weight: 300;
+      position: relative;
+    }
+
+    .page-header h1::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cotton-candy), var(--cotton-candy-dark));
+      border-radius: 3px;
+    }
+
+    .page-header p {
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+
+    /* Process sections */
+    .process-section {
+      margin-bottom: 2.5rem;
+      padding: 2rem;
+      background: linear-gradient(145deg, #252525, #202020);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      border-left: 4px solid var(--cotton-candy-dark);
+      animation: fadeInUp 0.8s ease-out;
+      animation-fill-mode: both;
+      position: relative;
+    }
+
+    .process-section:nth-child(2) { animation-delay: 0.1s; }
+    .process-section:nth-child(3) { animation-delay: 0.2s; }
+    .process-section:nth-child(4) { animation-delay: 0.3s; }
+    .process-section:nth-child(5) { animation-delay: 0.4s; }
+    .process-section:nth-child(6) { animation-delay: 0.5s; }
+    .process-section:nth-child(7) { animation-delay: 0.6s; }
+    .process-section:nth-child(8) { animation-delay: 0.7s; }
+
+    .process-section .step-number {
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      background: linear-gradient(135deg, var(--cotton-candy), var(--cotton-candy-dark));
+      color: var(--dark-charcoal);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px var(--cotton-candy-glow);
+    }
+
+    .process-section h2 {
+      color: var(--cotton-candy);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+
+    .process-section p {
+      margin-bottom: 1rem;
+      color: var(--light-text);
+      font-size: 1rem;
+    }
+
+    .process-section ul {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    .process-section li {
+      padding: 0.5rem 0;
+      color: var(--light-text);
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .process-section li:before {
+      content: "▸";
+      color: var(--cotton-candy-dark);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* Key principles box */
+    .principles-box {
+      background: linear-gradient(135deg, var(--dark-charcoal), #1a1a1a);
+      border: 2px solid var(--cotton-candy-dark);
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .principles-box h3 {
+      color: var(--cotton-candy);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .principle-item {
+      background: var(--slate-grey);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 3px solid var(--cotton-candy);
+    }
+
+    .principle-item h4 {
+      color: var(--cotton-candy);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .principle-item p {
+      color: var(--light-text);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* Warning/Ethics box */
+    .ethics-warning {
+      background: linear-gradient(135deg, #2a1a1a, #1f1f1f);
+      border: 2px solid #ff6b6b;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .ethics-warning h4 {
+      color: #ff6b6b;
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+    }
+
+    .ethics-warning p {
+      color: var(--light-text);
+      margin: 0;
+      font-weight: 500;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Footer */
     footer {
       background-color: var(--dark-charcoal);
       color: var(--ash-font);
       text-align: center;
-      padding: 1rem;
+      padding: 2rem;
       font-size: 0.9rem;
+      margin-top: 2rem;
+      border-top: 2px solid var(--cotton-candy-dark);
+    }
+
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .footer-section h3 {
+      color: var(--cotton-candy);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--ash-grey);
+    }
+
+    .footer-section p {
+      color: var(--light-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--ash-grey);
+      color: var(--ash-font);
       font-style: italic;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 1rem;
+      }
+      
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      
+      main {
+        padding: 2rem 1rem;
+      }
+      
+      .process-section {
+        padding: 1.5rem;
+      }
+
+      .principles-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    Fundamentals - Under Maintenance
+    <nav>
+      <a href="/" class="logo">Mini Mittens</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><span class="current">Fundamentals</span></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
+    <section class="page-header">
+      <h1>Physical Penetration Testing</h1>
+      <p>Core fundamentals and methodology from engagement to documentation</p>
+    </section>
 
-  <!--
-<a href="https://minimittens.xyz/passwords-backup.txt" style="
-  display: inline-block;
-  background-color: #555555; /* ash grey */
-  color: #232323;            /* slate grey text */
-  border: none;
-  border-radius: 12px;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  text-decoration: none;
-  cursor: pointer;
-  ">
-  Backup Passwords
-</a>
---!>
+    <section class="process-section">
+      <div class="step-number">1</div>
+      <h2>Initial Client Engagement</h2>
+      <p>The foundation of any physical pentest begins with understanding the client's needs, scope, and objectives. This phase establishes the legal framework and defines success criteria.</p>
+      
+      <ul>
+        <li>Scope definition and boundary establishment</li>
+        <li>Rules of engagement and legal considerations</li>
+        <li>Timeline and resource allocation</li>
+        <li>Emergency contact procedures and escalation paths</li>
+        <li>Success metrics and deliverable expectations</li>
+      </ul>
 
+      <div class="ethics-warning">
+        <h4>Critical Requirement</h4>
+        <p>All physical penetration testing must be explicitly authorized in writing before any testing begins. Unauthorized testing is illegal and unethical.</p>
+      </div>
+    </section>
 
+    <section class="process-section">
+      <div class="step-number">2</div>
+      <h2>Reconnaissance & Intelligence Gathering</h2>
+      <p>Understanding the target environment through passive observation and research. This phase focuses on gathering information without direct interaction with security systems.</p>
+      
+      <ul>
+        <li>Physical layout analysis and architectural assessment</li>
+        <li>Security control identification and mapping</li>
+        <li>Personnel behavior patterns and schedules</li>
+        <li>Entry/exit points and traffic flow analysis</li>
+        <li>Technology stack and security vendor identification</li>
+      </ul>
+    </section>
 
+    <section class="process-section">
+      <div class="step-number">3</div>
+      <h2>Threat Modeling & Attack Planning</h2>
+      <p>Developing realistic attack scenarios based on gathered intelligence. This phase translates observations into actionable testing strategies while maintaining ethical boundaries.</p>
+      
+      <ul>
+        <li>Attack vector prioritization based on likelihood and impact</li>
+        <li>Resource requirements and tool selection</li>
+        <li>Contingency planning for unexpected scenarios</li>
+        <li>Safety protocols and damage prevention measures</li>
+        <li>Evidence collection and documentation strategies</li>
+      </ul>
+    </section>
 
+    <section class="process-section">
+      <div class="step-number">4</div>
+      <h2>Active Testing Execution</h2>
+      <p>The hands-on phase where theoretical vulnerabilities are validated through careful, controlled testing. Focus on methodical approach while minimizing disruption.</p>
+      
+      <ul>
+        <li>Physical bypass testing of locks and access controls</li>
+        <li>Social engineering scenarios and human factor assessment</li>
+        <li>Electronic security system evaluation</li>
+        <li>Credential harvesting and access escalation testing</li>
+        <li>Real-time documentation and evidence preservation</li>
+      </ul>
+    </section>
 
-    <!-- Scheduled Release October 31st 2025 -->
+    <section class="process-section">
+      <div class="step-number">5</div>
+      <h2>Evidence Documentation</h2>
+      <p>Comprehensive recording of findings, methodologies, and impact assessment. Documentation must be detailed enough for replication and remediation guidance.</p>
+      
+      <ul>
+        <li>Photographic and video evidence with timestamps</li>
+        <li>Step-by-step methodology documentation</li>
+        <li>Tool and technique specifications</li>
+        <li>Time investment and difficulty assessment</li>
+        <li>Potential impact analysis and risk scoring</li>
+      </ul>
+    </section>
+
+    <section class="process-section">
+      <div class="step-number">6</div>
+      <h2>Risk Assessment & Prioritization</h2>
+      <p>Analysis of discovered vulnerabilities in the context of business impact and likelihood of exploitation. This phase translates technical findings into business language.</p>
+      
+      <ul>
+        <li>Vulnerability severity classification</li>
+        <li>Business impact assessment</li>
+        <li>Exploit difficulty and skill level analysis</li>
+        <li>Compliance gap identification</li>
+        <li>Cost-benefit analysis for remediation efforts</li>
+      </ul>
+    </section>
+
+    <section class="process-section">
+      <div class="step-number">7</div>
+      <h2>Remediation Recommendations</h2>
+      <p>Practical, implementable solutions for identified vulnerabilities. Recommendations should be prioritized, realistic, and considerate of operational requirements.</p>
+      
+      <ul>
+        <li>Technical controls and procedural improvements</li>
+        <li>Cost-effective security enhancement strategies</li>
+        <li>Implementation timeline and resource requirements</li>
+        <li>Training and awareness program recommendations</li>
+        <li>Ongoing monitoring and validation suggestions</li>
+      </ul>
+    </section>
+
+    <section class="process-section">
+      <div class="step-number">8</div>
+      <h2>Final Reporting & Knowledge Transfer</h2>
+      <p>Comprehensive documentation delivery with executive summary, technical details, and actionable remediation guidance. Clear communication ensures findings drive meaningful security improvements.</p>
+      
+      <ul>
+        <li>Executive summary with business impact focus</li>
+        <li>Detailed technical findings with reproduction steps</li>
+        <li>Photographic evidence and supporting documentation</li>
+        <li>Prioritized remediation roadmap</li>
+        <li>Follow-up testing recommendations and timelines</li>
+      </ul>
+    </section>
+
+    <div class="principles-box">
+      <h3>Core Principles</h3>
+      <div class="principles-grid">
+        <div class="principle-item">
+          <h4>Authorization First</h4>
+          <p>Never conduct testing without explicit written permission and clear scope boundaries.</p>
+        </div>
+        
+        <div class="principle-item">
+          <h4>Minimal Impact</h4>
+          <p>Prove vulnerabilities exist without causing operational disruption or damage.</p>
+        </div>
+        
+        <div class="principle-item">
+          <h4>Systematic Methodology</h4>
+          <p>Follow repeatable processes that can be documented and verified by others.</p>
+        </div>
+        
+        <div class="principle-item">
+          <h4>Evidence-Based</h4>
+          <p>Every finding must be supported by concrete evidence and reproduction steps.</p>
+        </div>
+        
+        <div class="principle-item">
+          <h4>Client-Focused</h4>
+          <p>Recommendations must be practical, implementable, and aligned with business objectives.</p>
+        </div>
+        
+        <div class="principle-item">
+          <h4>Continuous Learning</h4>
+          <p>Each engagement provides opportunities to refine methodology and improve outcomes.</p>
+        </div>
+      </div>
+    </div>
   </main>
 
-<footer>
-  <table width="100%">
-    <tr>
-      <!-- Left column -->
-      <td align="left" valign="top" style="width: 33%;">
-        <div>Domain: https://minimittens.xyz </div>
-        <ul style="list-style: none; padding-left: 0; margin-top: 0.5em;">
-          <!-- <li>Mini Mittens' site, uploaded to github.com</li> -->
-        </ul>
-      </td>
-
-      <!-- Center column -->
-      <td align="center" valign="top" style="width: 34%;">
-        <div>Created by Daniel. A.</div>
-        <ul style="list-style: none; padding-left: 0; margin-top: 0.5em;">
-          <li>Carwash Employee</li>
-          <!-- <li>DNS check verified</li>
-This site is not for SSH, SQL injection, fuzzing, or Gobuster testing.
-Please use official training environments like Hack The Box or TryHackMe.
--->
-        </ul>
-      </td>
-
-      <!-- Right column -->
-      <td align="right" valign="top" style="width: 33%;">
-        <div>26-08-2025</div>
-      </td>
-    </tr>
-  </table>
-</footer>
-
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Methodology</h3>
+        <p>Systematic approach to physical security testing</p>
+        <p>Evidence-based vulnerability assessment</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Ethics</h3>
+        <p>Authorization and consent required</p>
+        <p>Minimal impact and responsible disclosure</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Outcome</h3>
+        <p>Actionable security improvements</p>
+        <p>Risk reduction and compliance alignment</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>Physical Penetration Testing Fundamentals • Professional Methodology</p>
+    </div>
+  </footer>
 </body>
 </html>
