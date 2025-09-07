@@ -1,36 +1,611 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Flag</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MB7REKVN1J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+gtag(‘config’, ‘G-MB7REKVN1J’);
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>CTF Challenge - Mini Mittens</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <meta name="description" content="Capture The Flag challenge - Can you find all the clues?" />
   <style>
-    body {
-      background-color: #232323; /* slate grey */
-      color: #555555; /* ash grey */
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+    /* Colours */
+    :root {
+      --slate-grey: #232323;      
+      --ash-grey: #555555;        
+      --dark-charcoal: #111111;   
+      --ash-font: #444444;        
+      --light-text: #cccccc;      
+      --accent: #888888;          
+      --hover-accent: #999999;    
+      --cotton-candy: #ffaaff;    
+      --cotton-candy-dark: #cc88cc; 
+      --cotton-candy-glow: rgba(255, 170, 255, 0.3); 
+      --success-green: #00ff88;
+      --warning-orange: #ffaa00;
+      --error-red: #ff4444;
     }
-    h1 {
-      color: #555555; /* ash grey */
-      margin-bottom: 0.5rem;
-      border-bottom: 2px solid #555555;
-      padding-bottom: 0.3rem;
-      border-radius: 6px;
-    }
-    p {
-      color: #444444; /* ash font */
-      font-size: 1.1rem;
-    }
+
+```
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--slate-grey);
+  color: var(--light-text);
+  font-family: 'Courier New', monospace;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: var(--ash-grey);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark-charcoal);
+  text-decoration: none;
+  position: relative;
+}
+
+.logo::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cotton-candy), var(--cotton-candy-dark));
+  border-radius: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--dark-charcoal);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.nav-links a:hover {
+  color: var(--slate-grey);
+  background-color: rgba(255, 170, 255, 0.1);
+}
+
+main {
+  flex-grow: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.terminal {
+  background: var(--dark-charcoal);
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 2px solid var(--cotton-candy-dark);
+  box-shadow: 0 0 20px var(--cotton-candy-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal::before {
+  content: "● ● ●";
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+.terminal-header {
+  color: var(--cotton-candy);
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+  border-bottom: 1px solid var(--ash-grey);
+  padding-bottom: 1rem;
+}
+
+.challenge-text {
+  color: var(--light-text);
+  margin: 1rem 0;
+  padding-left: 1rem;
+}
+
+.prompt {
+  color: var(--cotton-candy);
+  font-weight: bold;
+}
+
+.clue {
+  background: rgba(255, 170, 255, 0.1);
+  border-left: 4px solid var(--cotton-candy);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0 6px 6px 0;
+}
+
+.hidden-clue {
+  opacity: 0;
+  color: var(--slate-grey);
+  font-size: 0.1px;
+  position: absolute;
+  left: -9999px;
+  user-select: none;
+}
+
+.flag-input {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  align-items: center;
+}
+
+.flag-input input {
+  flex: 1;
+  padding: 1rem;
+  background: var(--slate-grey);
+  border: 2px solid var(--ash-grey);
+  border-radius: 6px;
+  color: var(--light-text);
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.flag-input input:focus {
+  outline: none;
+  border-color: var(--cotton-candy);
+  box-shadow: 0 0 10px var(--cotton-candy-glow);
+}
+
+.submit-btn {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--cotton-candy), var(--cotton-candy-dark));
+  color: var(--dark-charcoal);
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--cotton-candy-glow);
+}
+
+.result {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.result.show {
+  opacity: 1;
+}
+
+.result.success {
+  background: rgba(0, 255, 136, 0.2);
+  border: 2px solid var(--success-green);
+  color: var(--success-green);
+}
+
+.result.error {
+  background: rgba(255, 68, 68, 0.2);
+  border: 2px solid var(--error-red);
+  color: var(--error-red);
+}
+
+.success-animation {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.flag-display {
+  background: var(--dark-charcoal);
+  border: 2px solid var(--success-green);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  font-family: 'Courier New', monospace;
+  word-break: break-all;
+  color: var(--success-green);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 5px var(--cotton-candy); }
+  50% { text-shadow: 0 0 20px var(--cotton-candy), 0 0 30px var(--cotton-candy); }
+}
+
+.glowing {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.ascii-art {
+  color: var(--cotton-candy);
+  font-size: 0.8rem;
+  line-height: 1;
+  text-align: center;
+  margin: 2rem 0;
+  white-space: pre;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .flag-input {
+    flex-direction: column;
+  }
+  
+  .flag-input input {
+    width: 100%;
+  }
+  
+  main {
+    padding: 1rem;
+  }
+}
+```
+
   </style>
 </head>
 <body>
-  <h1>Flag - Work in Progress</h1>
-  <p>Work In Progress</p>
+  <div class="matrix-bg" id="matrixBg"></div>
+
+  <header>
+    <nav>
+      <a href="/" class="logo">Mini Mittens</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/fundamentals">Fundamentals</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="terminal">
+      <div class="terminal-header">
+        <h1>🚩 CAPTURE THE FLAG CHALLENGE 🚩</h1>
+        <p>Welcome to the Mini Mittens CTF</p>
+      </div>
+
+```
+  <div class="ascii-art">
+```
+
+You’re right, I messed that up - sorry about your laptop dying too, that’s frustrating timing.
+
+Here’s clean “MINI MITTENS” ASCII:
+
+```
+███╗   ███╗██╗███╗   ██╗██╗    ███╗   ███╗██╗████████╗████████╗███████╗███╗   ██╗███████╗
+████╗ ████║██║████╗  ██║██║    ████╗ ████║██║╚══██╔══╝╚══██╔══╝██╔════╝████╗  ██║██╔════╝
+██╔████╔██║██║██╔██╗ ██║██║    ██╔████╔██║██║   ██║      ██║   █████╗  ██╔██╗ ██║███████╗
+██║╚██╔╝██║██║██║╚██╗██║██║    ██║╚██╔╝██║██║   ██║      ██║   ██╔══╝  ██║╚██╗██║╚════██║
+██║ ╚═╝ ██║██║██║ ╚████║██║    ██║ ╚═╝ ██║██║   ██║      ██║   ███████╗██║ ╚████║███████║
+╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝    ╚═╝     ╚═╝╚═╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═══╝╚══════╝
+```
+</div>
+
+```
+  <div class="challenge-text">
+    <p class="prompt">root@minimittens:~$</p>
+    <p>Welcome, challenger. You've found the hidden CTF page.</p>
+    <p>Your mission: Piece together the flag from multiple sources.</p>
+  </div>
+
+  <div class="clue">
+    <strong>🔍 CLUE #1:</strong> The flag starts with: <code>flag{7a8b9c</code>
+  </div>
+
+  <div class="clue">
+    <strong>🔍 CLUE #2:</strong> Look in the page source for the next piece... <!-- Next part: 2d4e5f -->
+  </div>
+
+  <div class="clue">
+    <strong>🔍 CLUE #3:</strong> The middle section can be found by inspecting this element's data attribute.
+    <div data-flag-part="6g7h8i9j0k" style="opacity: 0.01;">Hidden in plain sight</div>
+  </div>
+
+  <div class="clue">
+    <strong>🔍 CLUE #4:</strong> Console log might reveal something... Run: <code>getFlagPart()</code>
+  </div>
+
+  <div class="clue">
+    <strong>🔍 CLUE #5:</strong> The final piece awaits in the network tab. Look for a "secret" request when you click this button:
+    <button id="secretBtn" onclick="triggerSecretRequest()">🔐 Secret Request</button>
+  </div>
+
+  <div class="flag-input">
+    <input type="text" id="flagInput" placeholder="Enter the complete flag here..." maxlength="100">
+    <button class="submit-btn" onclick="checkFlag()">SUBMIT FLAG</button>
+  </div>
+
+  <div id="result" class="result"></div>
+  
+  <div id="successSection" style="display: none;">
+    <div class="success-animation">
+      <div class="ascii-art glowing">
+██████╗ ██████╗ ███╗   ██╗ ██████╗ ██████╗  █████╗ ████████╗███████╗██╗
+██╔════╝██╔═══██╗████╗  ██║██╔════╝ ██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║
+██║     ██║   ██║██╔██╗ ██║██║  ███╗██████╔╝███████║   ██║   ███████╗██║
+██║     ██║   ██║██║╚██╗██║██║   ██║██╔══██╗██╔══██║   ██║   ╚════██║╚═╝
+╚██████╗╚██████╔╝██║ ╚████║╚██████╔╝██║  ██║██║  ██║   ██║   ███████║██╗
+ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝
+      </div>
+      <h2>🎉 FLAG CAPTURED! 🎉</h2>
+      <div class="flag-display" id="flagDisplay"></div>
+      <p>Excellent work! You've successfully demonstrated:</p>
+      <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
+        <li>🔍 Source code analysis</li>
+        <li>🧩 Element inspection</li>
+        <li>💻 Console interaction</li>
+        <li>🌐 Network monitoring</li>
+        <li>🧠 Pattern recognition</li>
+      </ul>
+      <p style="margin-top: 2rem; color: var(--cotton-candy);">
+        Welcome to the world of CTF challenges. Keep exploring, keep learning!
+      </p>
+    </div>
+  </div>
+</div>
+```
+
+  </main>
+
+  <!-- Hidden clues in source -->
+
+  <!-- FLAG_PART_2: 2d4e5f -->
+
+  <script>
+    // The complete flag
+    const correctFlag = "flag{7a8b9c2d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z}";
+    
+    // Console clue function
+    function getFlagPart() {
+      console.log("🚩 FLAG PART 4: 1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z");
+      console.log("Nice work using the console! Keep going...");
+      return "1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z";
+    }
+
+    // Make the function available globally
+    window.getFlagPart = getFlagPart;
+
+    // Secret network request
+    function triggerSecretRequest() {
+      // Create a fake request that shows in network tab
+      const secretData = encodeURIComponent("flag_final_part=}");
+      
+      // Create an image request that will show in network tab
+      const img = new Image();
+      img.src = `data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7?secret=${secretData}`;
+      
+      // Also log to console for backup
+      console.log("🌐 Network request triggered! Check the Network tab for 'secret' parameter");
+      console.log("Final part: }");
+      
+      // Visual feedback
+      const btn = document.getElementById('secretBtn');
+      btn.style.background = 'var(--success-green)';
+      btn.textContent = '✅ Request Sent!';
+      
+      setTimeout(() => {
+        btn.style.background = '';
+        btn.textContent = '🔐 Secret Request';
+      }, 2000);
+    }
+
+    function checkFlag() {
+      const input = document.getElementById('flagInput');
+      const result = document.getElementById('result');
+      const successSection = document.getElementById('successSection');
+      const flagDisplay = document.getElementById('flagDisplay');
+      
+      const userFlag = input.value.trim().toLowerCase();
+      const correctFlagLower = correctFlag.toLowerCase();
+      
+      result.classList.remove('show', 'success', 'error');
+      
+      setTimeout(() => {
+        if (userFlag === correctFlagLower) {
+          result.className = 'result show success';
+          result.innerHTML = `
+            <h3>🎉 CONGRATULATIONS! 🎉</h3>
+            <p>Flag captured successfully!</p>
+          `;
+          
+          // Show success section
+          setTimeout(() => {
+            successSection.style.display = 'block';
+            flagDisplay.textContent = correctFlag;
+            
+            // Scroll to success section
+            successSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Trigger celebration effects
+            createConfetti();
+          }, 1000);
+          
+        } else {
+          result.className = 'result show error';
+          if (userFlag.startsWith('flag{') && userFlag.endsWith('}')) {
+            result.innerHTML = `
+              <h3>❌ INCORRECT FLAG</h3>
+              <p>Close! You have the right format, but the flag content is wrong.</p>
+              <p>Keep searching for all the pieces...</p>
+            `;
+          } else {
+            result.innerHTML = `
+              <h3>❌ INVALID FORMAT</h3>
+              <p>Flags should be in format: flag{...}</p>
+              <p>Keep looking for all the clues!</p>
+            `;
+          }
+        }
+      }, 100);
+    }
+
+    // Confetti effect
+    function createConfetti() {
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.position = 'fixed';
+        confetti.style.width = '10px';
+        confetti.style.height = '10px';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = '-10px';
+        confetti.style.zIndex = '9999';
+        confetti.style.pointerEvents = 'none';
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        
+        document.body.appendChild(confetti);
+        
+        const animation = confetti.animate([
+          { transform: 'translateY(-10px) rotate(0deg)', opacity: 1 },
+          { transform: `translateY(100vh) rotate(720deg)`, opacity: 0 }
+        ], {
+          duration: Math.random() * 3000 + 2000,
+          easing: 'cubic-bezier(0.5, 0, 0.5, 1)'
+        });
+        
+        animation.onfinish = () => confetti.remove();
+      }
+    }
+
+    // Matrix background effect
+    function createMatrix() {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.style.position = 'fixed';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      canvas.style.zIndex = '-1';
+      canvas.style.opacity = '0.05';
+      document.getElementById('matrixBg').appendChild(canvas);
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const chars = '01';
+      const fontSize = 14;
+      const columns = canvas.width / fontSize;
+      const drops = Array(Math.floor(columns)).fill(1);
+
+      function draw() {
+        ctx.fillStyle = 'rgba(35, 35, 35, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#ffaaff';
+        ctx.font = fontSize + 'px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+      }
+
+      setInterval(draw, 50);
+    }
+
+    // Initialize effects
+    document.addEventListener('DOMContentLoaded', () => {
+      createMatrix();
+      
+      // Easter egg: Konami code
+      let konamiCode = [];
+      const expectedCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
+      
+      document.addEventListener('keydown', (e) => {
+        konamiCode.push(e.keyCode);
+        if (konamiCode.length > expectedCode.length) {
+          konamiCode.shift();
+        }
+        
+        if (konamiCode.length === expectedCode.length && 
+            konamiCode.every((code, i) => code === expectedCode[i])) {
+          console.log('🎮 KONAMI CODE ACTIVATED! 🎮');
+          console.log('Easter egg: You found the secret developer mode!');
+          console.log('Here\'s a hint: The flag format is consistent throughout all parts');
+        }
+      });
+    });
+
+    // Allow Enter key to submit
+    document.getElementById('flagInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        checkFlag();
+      }
+    });
+  </script>
+
 </body>
 </html>
