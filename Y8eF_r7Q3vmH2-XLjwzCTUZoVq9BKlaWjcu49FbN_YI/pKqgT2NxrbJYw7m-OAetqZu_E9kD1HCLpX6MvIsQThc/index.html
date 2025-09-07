@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mini Mittens - Daniel A.</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  <meta name="description" content="Daniel A. - Physical pentesting, lockpicking, and creative problem solving." />
+  <meta name="description" content="Daniel A. - Physical pentesting, lockpicking, and security testing. Carwash employee exploring cybersecurity through hands-on problem solving and creative resourcefulness." />
   <style>
     /* Colours */
     :root {
@@ -16,6 +16,9 @@
       --light-text: #cccccc;      /* lighter text for readability */
       --accent: #888888;          /* accent color */
       --hover-accent: #999999;    /* hover states */
+      --cotton-candy: #ffaaff;    /* cotton candy pink */
+      --cotton-candy-dark: #cc88cc; /* darker pink for subtle use */
+      --cotton-candy-glow: rgba(255, 170, 255, 0.3); /* pink glow */
     }
 
     /* Reset & base */
@@ -58,6 +61,18 @@
       font-weight: 700;
       color: var(--dark-charcoal);
       text-decoration: none;
+      position: relative;
+    }
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cotton-candy), var(--cotton-candy-dark));
+      border-radius: 2px;
     }
 
     .nav-links {
@@ -71,10 +86,21 @@
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
     }
 
     .nav-links a:hover {
       color: var(--slate-grey);
+      background-color: rgba(255, 170, 255, 0.1);
+    }
+
+    .nav-links .current {
+      background: linear-gradient(135deg, var(--cotton-candy), var(--cotton-candy-dark));
+      color: var(--dark-charcoal);
+      font-weight: 600;
+      cursor: default;
+      box-shadow: 0 2px 8px var(--cotton-candy-glow);
     }
 
     /* Main Content */
@@ -97,6 +123,19 @@
       margin-bottom: 0.5rem;
       color: var(--light-text);
       font-weight: 300;
+      position: relative;
+    }
+
+    .hero h1::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cotton-candy), var(--cotton-candy-dark));
+      border-radius: 3px;
     }
 
     .hero .subtitle {
@@ -107,10 +146,13 @@
 
     .hero .tagline {
       font-size: 1.1rem;
-      color: var(--ash-font);
+      color: var(--light-text);
       max-width: 600px;
       margin: 0 auto;
-      font-style: italic;
+      padding: 1rem;
+      background: linear-gradient(135deg, rgba(255, 170, 255, 0.05), rgba(204, 136, 204, 0.05));
+      border-radius: 8px;
+      border: 1px solid rgba(255, 170, 255, 0.2);
     }
 
     /* Sections */
@@ -122,6 +164,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       animation: fadeInUp 0.8s ease-out;
       animation-fill-mode: both;
+      border-left: 4px solid var(--cotton-candy-dark);
     }
 
     .section:nth-child(2) { animation-delay: 0.2s; }
@@ -135,6 +178,17 @@
       padding-bottom: 0.5rem;
       border-bottom: 2px solid var(--ash-grey);
       font-weight: 400;
+      position: relative;
+    }
+
+    .section h2::before {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--cotton-candy);
     }
 
     .section p {
@@ -154,19 +208,20 @@
       background: var(--dark-charcoal);
       padding: 1.5rem;
       border-radius: 8px;
-      border-left: 4px solid var(--ash-grey);
+      border-left: 4px solid var(--cotton-candy);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .skill-category:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3), 0 0 20px var(--cotton-candy-glow);
     }
 
     .skill-category h3 {
-      color: var(--accent);
+      color: var(--cotton-candy);
       margin-bottom: 0.8rem;
       font-size: 1.2rem;
+      font-weight: 600;
     }
 
     .skill-category ul {
@@ -182,31 +237,37 @@
 
     .skill-category li:before {
       content: "▸";
-      color: var(--ash-grey);
+      color: var(--cotton-candy-dark);
       position: absolute;
       left: 0;
     }
 
-    /* Story highlight */
-    .story-highlight {
+    /* Approach highlight */
+    .approach-highlight {
       background: linear-gradient(135deg, var(--dark-charcoal), #1a1a1a);
-      border-left: 4px solid var(--accent);
+      border: 2px solid var(--cotton-candy-dark);
       padding: 1.5rem;
-      border-radius: 8px;
+      border-radius: 12px;
       margin: 1.5rem 0;
       position: relative;
       overflow: hidden;
     }
 
-    .story-highlight:before {
+    .approach-highlight:before {
       content: "";
       position: absolute;
       top: 0;
       right: 0;
       width: 100px;
       height: 100px;
-      background: linear-gradient(45deg, transparent, rgba(136,136,136,0.1));
-      border-radius: 0 0 0 100px;
+      background: radial-gradient(circle, var(--cotton-candy-glow), transparent);
+      border-radius: 50%;
+    }
+
+    .approach-highlight h3 {
+      color: var(--cotton-candy);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
     }
 
     /* Animations */
@@ -229,6 +290,7 @@
       padding: 2rem;
       font-size: 0.9rem;
       margin-top: 2rem;
+      border-top: 2px solid var(--cotton-candy-dark);
     }
 
     .footer-content {
@@ -241,7 +303,7 @@
     }
 
     .footer-section h3 {
-      color: var(--accent);
+      color: var(--cotton-candy);
       margin-bottom: 1rem;
       padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--ash-grey);
@@ -294,10 +356,9 @@
     <nav>
       <a href="/" class="logo">Mini Mittens</a>
       <ul class="nav-links">
-        <li><a href="/">Home</a></li>
+        <li><span class="current">Home</span></li>
         <li><a href="/about">About</a></li>
         <li><a href="/fundamentals">Fundamentals</a></li>
-        <li><a href="/blog">Blog</a></li>
       </ul>
     </nav>
   </header>
@@ -306,31 +367,31 @@
     <section class="hero">
       <h1>Daniel A.</h1>
       <p class="subtitle">Carwash Employee • Security Enthusiast • Problem Solver</p>
-      <p class="tagline">"Small oversights create big vulnerabilities - I find them so you can fix them."</p>
+      <p class="tagline">Systematic approach to finding vulnerabilities: Identify weaknesses before malicious actors do. Test methodically. Document thoroughly. Fix responsibly.</p>
     </section>
 
     <section class="section">
       <h2>What I Do</h2>
       <p>I'm passionate about understanding how things work - and more importantly, how they break. Whether it's picking a lock, solving a Rubik's cube, or finding security gaps, I approach every challenge with curiosity and methodical thinking.</p>
       
-      <p>Lately I've been diving deep into physical pentesting, practicing lock bypass techniques, social engineering, and access control testing in controlled environments. It's fascinating how the smallest oversight can create massive vulnerabilities.</p>
+      <p>Currently diving deep into physical pentesting, practicing lock bypass techniques, social engineering, and access control testing in controlled environments. It's fascinating how the smallest oversight can create massive vulnerabilities.</p>
       
-      <div class="story-highlight">
-        <h3 style="color: var(--accent); margin-bottom: 1rem;">Resourcefulness in Action</h3>
-        <p>One time I found an almost brand-new laptop in the trash. After some detective work, I retrieved the owner's data, securely wiped it clean, and discovered the only issue was a faulty battery. A $75 fix later, I had a $2000+ machine. That's the kind of problem-solving I bring to everything I do.</p>
+      <div class="approach-highlight">
+        <h3>My Testing Philosophy</h3>
+        <p>Every system has entry points. Every process has assumptions. Every security measure has limitations. The goal isn't to break things - it's to understand where they're already broken so they can be properly secured.</p>
       </div>
     </section>
 
     <section class="section">
-      <h2>Skills & Interests</h2>
+      <h2>Skills & Capabilities</h2>
       <div class="skills-grid">
         <div class="skill-category">
           <h3>Physical Security</h3>
           <ul>
-            <li>Lock picking & bypass techniques</li>
+            <li>Lock bypass assessment</li>
             <li>Social engineering testing</li>
-            <li>Access control assessment</li>
-            <li>Security gap identification</li>
+            <li>Access control evaluation</li>
+            <li>Vulnerability identification</li>
           </ul>
         </div>
         
@@ -338,19 +399,19 @@
           <h3>Technical Skills</h3>
           <ul>
             <li>Linux/Kali security testing</li>
-            <li>Complete PC building & repair</li>
-            <li>OS installation & optimization</li>
             <li>Hardware troubleshooting</li>
+            <li>System optimization</li>
+            <li>Network analysis</li>
           </ul>
         </div>
         
         <div class="skill-category">
           <h3>Problem Solving</h3>
           <ul>
-            <li>Rubik's cube solving</li>
-            <li>Research & investigation</li>
-            <li>Game design thinking</li>
+            <li>Pattern recognition</li>
+            <li>Research methodology</li>
             <li>Creative resourcefulness</li>
+            <li>Systematic analysis</li>
           </ul>
         </div>
       </div>
@@ -358,9 +419,9 @@
 
     <section class="section">
       <h2>Philosophy</h2>
-      <p>I believe security isn't just about technology - it's about understanding human behavior, physical systems, and the unexpected ways they interact. Every system has vulnerabilities; the key is finding them before the wrong people do.</p>
+      <p>Security isn't just about technology - it's about understanding human behavior, physical systems, and the unexpected ways they interact. Every system has vulnerabilities; the key is finding them before the wrong people do.</p>
       
-      <p>Whether I'm working on cars at the carwash or testing security systems, I approach each task with the same attention to detail and systematic thinking. Both jobs teach you that small problems, left unaddressed, become big ones.</p>
+      <p>Whether working on cars at the carwash or testing security systems, I approach each task with the same attention to detail and systematic thinking. Both jobs teach you that small problems, left unaddressed, become big ones.</p>
     </section>
   </main>
 
@@ -374,14 +435,14 @@
       
       <div class="footer-section">
         <h3>About This Site</h3>
-        <p>Personal site and blog</p>
-        <p>Built with vanilla HTML, CSS, JS</p>
+        <p>Personal site and portfolio</p>
+        <p>Built with vanilla HTML, CSS</p>
         <p>Dark theme optimized</p>
       </div>
       
       <div class="footer-section">
         <h3>Connect</h3>
-        <p>Exploring security, one lock at a time</p>
+        <p>Exploring security, one system at a time</p>
       </div>
     </div>
     
