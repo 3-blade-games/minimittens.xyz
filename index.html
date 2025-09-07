@@ -3,17 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mini Mittens - Daniel A. | Physical Security & Problem Solving</title>
+  <title>Mini Mittens - Daniel A.</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <meta name="description" content="Daniel A. - Physical pentesting, lockpicking, and security testing. Carwash employee exploring cybersecurity through hands-on problem solving and creative resourcefulness." />
-  <meta name="keywords" content="physical pentesting, lockpicking, security testing, Daniel A, Mini Mittens, cybersecurity, problem solving" />
-  <meta name="author" content="Daniel A." />
-  <meta property="og:title" content="Mini Mittens - Daniel A. | Physical Security & Problem Solving" />
-  <meta property="og:description" content="Physical pentesting, lockpicking, and security testing. Exploring cybersecurity through hands-on problem solving." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://minimittens.xyz" />
-
-
   <style>
     /* Colours */
     :root {
@@ -21,6 +13,12 @@
       --ash-grey: #555555;        /* lighter ash grey */
       --dark-charcoal: #111111;   /* dark charcoal for footer */
       --ash-font: #444444;        /* ash color for font */
+      --light-text: #cccccc;      /* lighter text for readability */
+      --accent: #888888;          /* accent color */
+      --hover-accent: #999999;    /* hover states */
+      --cotton-candy: #ffaaff;    /* cotton candy pink */
+      --cotton-candy-dark: #cc88cc; /* darker pink for subtle use */
+      --cotton-candy-glow: rgba(255, 170, 255, 0.3); /* pink glow */
     }
 
     /* Reset & base */
@@ -32,122 +30,425 @@
 
     body {
       background-color: var(--slate-grey);
-      color: var(--ash-font);
+      color: var(--light-text);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /*bottom border */
-
-    header, 
-    footer table td div {
-      color: var(--ash-grey);
-      margin-bottom: 0.5rem;
-      border-bottom: 2px solid var(--ash-grey);
-      padding-bottom: 0.3rem;
-      border-radius: 6px;
-    }
-
+    /* Header/Navigation */
     header {
       background-color: var(--ash-grey);
-      padding: 1.5rem;
-      text-align: center;
-      font-weight: 600;
-      font-size: 1.25rem;
-      color: var(--dark-charcoal); /* override text color for header */
-      border-bottom: 2px solid var(--ash-grey); /* keep bottom border with same color */
-      padding-bottom: 0.3rem;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark-charcoal);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cotton-candy), var(--cotton-candy-dark));
+      border-radius: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--dark-charcoal);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
       border-radius: 6px;
     }
 
-    main {
-      flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.1rem;
-      color: var(--ash-font);
-      padding: 2rem;
+    .nav-links a:hover {
+      color: var(--slate-grey);
+      background-color: rgba(255, 170, 255, 0.1);
     }
 
+    .nav-links .current {
+      background: linear-gradient(135deg, var(--cotton-candy), var(--cotton-candy-dark));
+      color: var(--dark-charcoal);
+      font-weight: 600;
+      cursor: default;
+      box-shadow: 0 2px 8px var(--cotton-candy-glow);
+    }
+
+    /* Main Content */
+    main {
+      flex-grow: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: var(--light-text);
+      font-weight: 300;
+      position: relative;
+    }
+
+    .hero h1::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cotton-candy), var(--cotton-candy-dark));
+      border-radius: 3px;
+    }
+
+    .hero .subtitle {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .hero .tagline {
+      font-size: 1.1rem;
+      color: var(--light-text);
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1rem;
+      background: linear-gradient(135deg, rgba(255, 170, 255, 0.05), rgba(204, 136, 204, 0.05));
+      border-radius: 8px;
+      border: 1px solid rgba(255, 170, 255, 0.2);
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: linear-gradient(145deg, #252525, #202020);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      animation: fadeInUp 0.8s ease-out;
+      animation-fill-mode: both;
+      border-left: 4px solid var(--cotton-candy-dark);
+    }
+
+    .section:nth-child(2) { animation-delay: 0.2s; }
+    .section:nth-child(3) { animation-delay: 0.4s; }
+    .section:nth-child(4) { animation-delay: 0.6s; }
+
+    .section h2 {
+      color: var(--light-text);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--ash-grey);
+      font-weight: 400;
+      position: relative;
+    }
+
+    .section h2::before {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--cotton-candy);
+    }
+
+    .section p {
+      margin-bottom: 1rem;
+      color: var(--light-text);
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .skill-category {
+      background: var(--dark-charcoal);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--cotton-candy);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .skill-category:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3), 0 0 20px var(--cotton-candy-glow);
+    }
+
+    .skill-category h3 {
+      color: var(--cotton-candy);
+      margin-bottom: 0.8rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .skill-category ul {
+      list-style: none;
+    }
+
+    .skill-category li {
+      padding: 0.3rem 0;
+      color: var(--light-text);
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .skill-category li:before {
+      content: "▸";
+      color: var(--cotton-candy-dark);
+      position: absolute;
+      left: 0;
+    }
+
+    /* Approach highlight */
+    .approach-highlight {
+      background: linear-gradient(135deg, var(--dark-charcoal), #1a1a1a);
+      border: 2px solid var(--cotton-candy-dark);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .approach-highlight:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, var(--cotton-candy-glow), transparent);
+      border-radius: 50%;
+    }
+
+    .approach-highlight h3 {
+      color: var(--cotton-candy);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Footer */
     footer {
       background-color: var(--dark-charcoal);
       color: var(--ash-font);
       text-align: center;
-      padding: 1rem;
+      padding: 2rem;
       font-size: 0.9rem;
+      margin-top: 2rem;
+      border-top: 2px solid var(--cotton-candy-dark);
+    }
+
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .footer-section h3 {
+      color: var(--cotton-candy);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--ash-grey);
+    }
+
+    .footer-section p, .footer-section li {
+      color: var(--light-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--ash-grey);
+      color: var(--ash-font);
       font-style: italic;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      main {
+        padding: 2rem 1rem;
+      }
+      
+      .section {
+        padding: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    Site - Under Maintenance
+    <nav>
+      <a href="/" class="logo">Mini Mittens</a>
+      <ul class="nav-links">
+        <li><span class="current">Home</span></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/fundamentals">Fundamentals</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
+    <section class="hero">
+      <h1>Daniel A.</h1>
+      <p class="subtitle">Carwash Employee • Security Enthusiast • Problem Solver</p>
+      <p class="tagline">Systematic approach to finding vulnerabilities: Identify weaknesses before malicious actors do. Test methodically. Document thoroughly. Fix responsibly.</p>
+    </section>
 
-  <!-- 
-  Removed in September 2025:
-<a href="/passwords-backup.txt">Backup Passwords</a>
+    <section class="section">
+      <h2>What I Do</h2>
+      <p>I'm passionate about understanding how things work - and more importantly, how they break. Whether it's picking a lock, solving a Rubik's cube, or finding security gaps, I approach every challenge with curiosity and methodical thinking.</p>
+      
+      <p>Currently diving deep into physical pentesting, practicing lock bypass techniques, social engineering, and access control testing in controlled environments. It's fascinating how the smallest oversight can create massive vulnerabilities.</p>
+      
+      <div class="approach-highlight">
+        <h3>My Testing Philosophy</h3>
+        <p>Every system has entry points. Every process has assumptions. Every security measure has limitations. The goal isn't to break things - it's to understand where they're already broken so they can be properly secured.</p>
+      </div>
+    </section>
 
-<a href="https://minimittens.xyz/passwords-backup.txt" style="
-  display: inline-block;
-  background-color: #555555; /* ash grey */
-  color: #232323;            /* slate grey text */
-  border: none;
-  border-radius: 12px;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  text-decoration: none;
-  cursor: pointer;
-  ">
-  Backup Passwords
-</a> 
-  -->
-<!-- Directory: /archive/ -->
-<!-- Deprecated: /archive/passwords-backup.txt -->
-<!-- Deleted: /archive/vault-export-august.csv -->
+    <section class="section">
+      <h2>Skills & Capabilities</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Physical Security</h3>
+          <ul>
+            <li>Lock bypass assessment</li>
+            <li>Social engineering testing</li>
+            <li>Access control evaluation</li>
+            <li>Vulnerability identification</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Technical Skills</h3>
+          <ul>
+            <li>Linux/Kali security testing</li>
+            <li>Hardware troubleshooting</li>
+            <li>System optimization</li>
+            <li>Network analysis</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Problem Solving</h3>
+          <ul>
+            <li>Pattern recognition</li>
+            <li>Research methodology</li>
+            <li>Creative resourcefulness</li>
+            <li>Systematic analysis</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-
-
-    
-    
-    <!-- Scheduled Release October 31st 2025 -->
+    <section class="section">
+      <h2>Philosophy</h2>
+      <p>Security isn't just about technology - it's about understanding human behavior, physical systems, and the unexpected ways they interact. Every system has vulnerabilities; the key is finding them before the wrong people do.</p>
+      
+      <p>Whether working on cars at the carwash or testing security systems, I approach each task with the same attention to detail and systematic thinking. Both jobs teach you that small problems, left unaddressed, become big ones.</p>
+    </section>
   </main>
 
-<footer>
-  <table width="100%">
-    <tr>
-      <!-- Left column -->
-      <td align="left" valign="top" style="width: 33%;">
-        <div>Domain: https://minimittens.xyz </div>
-        <ul style="list-style: none; padding-left: 0; margin-top: 0.5em;">
-          <!-- <li>Mini Mittens' site, uploaded to github.com</li> -->
-        </ul>
-      </td>
-
-      <!-- Center column -->
-      <td align="center" valign="top" style="width: 34%;">
-        <div>Created by Daniel. A.</div>
-        <ul style="list-style: none; padding-left: 0; margin-top: 0.5em;">
-          <li>Carwash Employee</li>
-          <!-- <li>DNS check verified</li> 
-This site is not for SSH, SQL injection, fuzzing, or Gobuster testing.
-Please use official training environments like Hack The Box or TryHackMe.
--->
-        </ul>
-      </td>
-
-      <!-- Right column -->
-      <td align="right" valign="top" style="width: 33%;">
-        <div>04-09-2025</div>
-      </td>
-    </tr>
-  </table>
-</footer>
-
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Domain Info</h3>
+        <p>https://minimittens.xyz</p>
+        <p>Hosted on GitHub Pages</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>About This Site</h3>
+        <p>Personal site and portfolio</p>
+        <p>Built with vanilla HTML, CSS</p>
+        <p>Dark theme optimized</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Connect</h3>
+        <p>Exploring security, one system at a time</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>Created by Daniel A. • Updated September 2025</p>
+    </div>
+  </footer>
 </body>
 </html>
