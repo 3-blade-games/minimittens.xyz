@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About - Mini Mittens</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <meta name="description" content="Daniel A.'s journey from gaming exploits to physical security testing. Learning through curiosity, problem-solving, and hands-on experimentation." />
+  <style>
+    /* Colours */
+    :root {
+      --slate-grey: #232323;      
+      --ash-grey: #555555;        
+      --dark-charcoal: #111111;   
+      --ash-font: #444444;        
+      --light-text: #cccccc;      
+      --accent: #888888;          
+      --hover-accent: #999999;    
+      --cotton-candy: #ffaaff;    
+      --cotton-candy-dark: #cc88cc; 
+      --cotton-candy-glow: rgba(255, 170, 255, 0.3); 
+    }
+
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--slate-grey);
+      color: var(--light-text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header/Navigation */
+    header {
+      background-color: var(--ash-grey);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark-charcoal);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cotton-candy), var(--cotton-candy-dark));
+      border-radius: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--dark-charcoal);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+    }
+
+    .nav-links a:hover {
+      color: var(--slate-grey);
+      background-color: rgba(255, 170, 255, 0.1);
+    }
+
+    .nav-links .current {
+      background: linear-gradient(135deg, var(--cotton-candy), var(--cotton-candy-dark));
+      color: var(--dark-charcoal);
+      font-weight: 600;
+      cursor: default;
+      box-shadow: 0 2px 8px var(--cotton-candy-glow);
+    }
+
+    /* Main Content */
+    main {
+      flex-grow: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    /* Page Header */
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--light-text);
+      font-weight: 300;
+      position: relative;
+    }
+
+    .page-header h1::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cotton-candy), var(--cotton-candy-dark));
+      border-radius: 3px;
+    }
+
+    .page-header p {
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+
+    /* Story sections */
+    .story-section {
+      margin-bottom: 2.5rem;
+      padding: 2rem;
+      background: linear-gradient(145deg, #252525, #202020);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      border-left: 4px solid var(--cotton-candy-dark);
+      animation: fadeInUp 0.8s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .story-section:nth-child(2) { animation-delay: 0.1s; }
+    .story-section:nth-child(3) { animation-delay: 0.2s; }
+    .story-section:nth-child(4) { animation-delay: 0.3s; }
+    .story-section:nth-child(5) { animation-delay: 0.4s; }
+    .story-section:nth-child(6) { animation-delay: 0.5s; }
+
+    .story-section h2 {
+      color: var(--cotton-candy);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .story-section p {
+      margin-bottom: 1rem;
+      color: var(--light-text);
+      font-size: 1rem;
+    }
+
+    .story-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Highlight boxes */
+    .insight-box {
+      background: linear-gradient(135deg, var(--dark-charcoal), #1a1a1a);
+      border: 2px solid var(--cotton-candy-dark);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    .insight-box h3 {
+      color: var(--cotton-candy);
+      margin-bottom: 0.8rem;
+      font-size: 1.2rem;
+    }
+
+    .insight-box p {
+      color: var(--light-text);
+      margin: 0;
+      font-style: italic;
+    }
+
+    /* Timeline elements */
+    .timeline-item {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.3rem;
+      width: 12px;
+      height: 12px;
+      background: var(--cotton-candy);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--cotton-candy-glow);
+    }
+
+    .timeline-item::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 1rem;
+      width: 2px;
+      height: calc(100% + 0.5rem);
+      background: var(--cotton-candy-dark);
+      opacity: 0.5;
+    }
+
+    .timeline-item:last-child::after {
+      display: none;
+    }
+
+    .timeline-item h3 {
+      color: var(--light-text);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item p {
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-charcoal);
+      color: var(--ash-font);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      border-top: 2px solid var(--cotton-candy-dark);
+    }
+
+    .footer-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .footer-section h3 {
+      color: var(--cotton-candy);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--ash-grey);
+    }
+
+    .footer-section p {
+      color: var(--light-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--ash-grey);
+      color: var(--ash-font);
+      font-style: italic;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 1rem;
+      }
+      
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      
+      main {
+        padding: 2rem 1rem;
+      }
+      
+      .story-section {
+        padding: 1.5rem;
+      }
+
+      .timeline-item {
+        padding-left: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/" class="logo">Mini Mittens</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><span class="current">About</span></li>
+        <li><a href="/fundamentals">Fundamentals</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <h1>About Daniel A.</h1>
+      <p>The journey from button-pressing curiosity to systematic security testing</p>
+    </section>
+
+    <section class="story-section">
+      <h2>How It Started</h2>
+      <p>I got into video games at age 6 with classics like Crash Bandicoot, Lemmings, and Spyro. At 25 now, I still love games when I get the chance - recently Tears of the Kingdom and various ghost hunter games, though my current computer limits how much I can play. But what really hooked me from the beginning wasn't just playing - it was finding exploits and glitches. There was something satisfying about discovering ways the game wasn't supposed to work, understanding the mechanics behind the magic.</p>
+      
+      <p>This naturally led me toward game development. If I could break games, maybe I could build them. I'd work on projects for 8 hours straight, completely absorbed in the problem-solving. The challenge? My ADHD meant that once I saved and quit, I'd start a completely new project rather than continue the old one. Dozens of half-finished games, but each one taught me something new about how systems work.</p>
+    </section>
+
+    <section class="story-section">
+      <h2>The Physical World</h2>
+      <p>Somewhere along the way, I discovered lockpicking. I can't pinpoint exactly what drew me to it, but the appeal was immediate - here was a physical system with rules, mechanisms, and vulnerabilities you could understand through practice and patience.</p>
+      
+      <p>Started with a basic set from an online marketplace, then upgraded to the Echelon set from Covert Instruments as I got more serious about understanding different lock types and picking techniques.</p>
+
+      <div class="insight-box">
+        <h3>The Connection</h3>
+        <p>Lockpicking taught me that physical security follows the same principles as digital systems - there are always assumptions, shortcuts, and edge cases that can be exploited if you understand how they work.</p>
+      </div>
+    </section>
+
+    <section class="story-section">
+      <h2>Back to Digital</h2>
+      <p>Physical security work got me thinking about digital systems again, but from a security perspective this time. I set up a Kali VM to start learning digital pentesting, but running it on Windows was frustrating and slow.</p>
+      
+      <p>So I did what felt natural - wiped my laptop completely and flashed Kali directly onto the hardware. No dual boot, no safety net. It's been my daily driver ever since, and I use it for digital training on platforms like TryHackMe. I'm not claiming to be an expert - I'm still learning - but the hands-on approach works for my learning style.</p>
+    </section>
+
+    <section class="story-section">
+      <h2>The Realization</h2>
+      <p>Listening to security podcasts, I started hearing stories about physical penetration testing and realized something: the mindset I'd been developing - always looking for ways systems could fail, thinking about edge cases, understanding mechanisms - this was exactly what physical pentesting required.</p>
+      
+      <p>I naturally analyze vulnerabilities everywhere I go. The difference between what I do as a hobby and what professional pentesters do isn't the skillset - it's the context. I've never had anyone officially ask me to break into their building and provide documentation to fix it, but the systematic approach comes naturally.</p>
+
+      <div class="insight-box">
+        <h3>The Why</h3>
+        <p>If something can be broken into, it's better you hire someone to do it ethically and fix it than wait for someone to do it with malicious intent. Ethical testers care about not breaking windows, doors, or hurting people. Malicious actors don't.</p>
+      </div>
+    </section>
+
+    <section class="story-section">
+      <h2>Current Reality & Future Goals</h2>
+      <p>Right now, I'm still working my 8-4 at the carwash. It pays the bills, but it's not where my life goals are. I want to turn these hobbies into profit, or better yet, passive income - earning from effort I put in once, not having to go back every day, every week, every year just to survive. That's not living life, that's just existing.</p>
+      
+      <p>The carwash work isn't wasted though. Both jobs teach you the same thing: small problems, left unaddressed, become big ones. Whether it's a missed spot on a car or a security vulnerability in a building, attention to detail matters.</p>
+
+      <div class="timeline-item">
+        <h3>Game Exploits</h3>
+        <p>Understanding how systems break and finding unintended behaviors</p>
+      </div>
+      
+      <div class="timeline-item">
+        <h3>Physical Locks</h3>
+        <p>Learning mechanical systems and bypass techniques</p>
+      </div>
+      
+      <div class="timeline-item">
+        <h3>Digital Security</h3>
+        <p>Applying physical security mindset to digital systems</p>
+      </div>
+      
+      <div class="timeline-item">
+        <h3>Future: Professional Testing</h3>
+        <p>Combining all skills for systematic security assessment</p>
+      </div>
+    </section>
+
+    <section class="story-section">
+      <h2>How I Think</h2>
+      <p>I understand a lot of mechanisms and how things work. If I don't understand something, I play with it until I figure it out. I have strong intuition for systems, but like any button that's not meant to be pressed - if I don't know what it does and I play with enough buttons, I'm sure to break something eventually.</p>
+      
+      <p>The key is understanding it so it either doesn't happen again, or it can be fixed more efficiently next time. Every failure is data. Every break is a learning opportunity. Every system has a logic to it, and once you understand that logic, you can predict where the weak points are.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Journey</h3>
+        <p>From gaming exploits to physical security</p>
+        <p>Learning through curiosity and practice</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Philosophy</h3>
+        <p>Understanding systems to secure them</p>
+        <p>Every failure teaches something new</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Current</h3>
+        <p>Building skills for professional transition</p>
+        <p>Carwash employee with security ambitions</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>Daniel A. • Still learning, always curious</p>
+    </div>
+  </footer>
+</body>
+</html>
