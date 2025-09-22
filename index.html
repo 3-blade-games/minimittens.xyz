@@ -34,6 +34,11 @@ gtag(‘config’, ‘G-MB7REKVN1J’);
       --instagram-gradient-start: #833ab4; /* Instagram gradient colors */
       --instagram-gradient-middle: #fd1d1d;
       --instagram-gradient-end: #fcb045;
+      --redbubble-start: #e53e3e; /* RedBubble red-warm purple */
+      --redbubble-end: #9f2b9f;
+      --deviantart-start: #05cc47; /* DeviantArt green-lime-turquoise */
+      --deviantart-middle: #32cd32;
+      --deviantart-end: #20b2aa;
     }
 
 ```
@@ -230,6 +235,42 @@ nav {
 
 .dropdown-item.instagram::before {
   content: "📸";
+  margin-right: 0.5rem;
+}
+
+/* RedBubble styling */
+.dropdown-item.redbubble {
+  background: linear-gradient(135deg, var(--redbubble-start), var(--redbubble-end));
+  color: white;
+  font-weight: 600;
+}
+
+.dropdown-item.redbubble:hover {
+  background: linear-gradient(135deg, var(--redbubble-end), var(--redbubble-start));
+  transform: translateX(3px);
+  box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
+}
+
+.dropdown-item.redbubble::before {
+  content: "🛍️";
+  margin-right: 0.5rem;
+}
+
+/* DeviantArt styling */
+.dropdown-item.deviantart {
+  background: linear-gradient(135deg, var(--deviantart-start), var(--deviantart-middle), var(--deviantart-end));
+  color: white;
+  font-weight: 600;
+}
+
+.dropdown-item.deviantart:hover {
+  background: linear-gradient(135deg, var(--deviantart-end), var(--deviantart-middle), var(--deviantart-start));
+  transform: translateX(3px);
+  box-shadow: 0 4px 15px rgba(5, 204, 71, 0.3);
+}
+
+.dropdown-item.deviantart::before {
+  content: "🎨";
   margin-right: 0.5rem;
 }
 
@@ -506,8 +547,10 @@ body.dropdown-open {
         <li class="dropdown">
           <span class="dropdown-toggle">Support</span>
           <div class="dropdown-menu">
-            <a href="buymeacoffee.com/minimittens" target="_blank" class="dropdown-item coffee">Buy Me a Coffee</a>
+            <a href="https://buymeacoffee.com/minimittens" target="_blank" class="dropdown-item coffee">Buy Me a Coffee</a>
             <a href="https://instagram.com/dandotootphotos" target="_blank" class="dropdown-item instagram">Instagram Photos</a>
+            <a href="https://www.deviantart.com/minimi77ens" target="_blank" class="dropdown-item deviantart">DeviantArt Gallery</a>
+            <a href="https://www.redbubble.com/people/MiniMittens/shop?utm_source=rb-native-app&utm_campaign=share-artist&utm_medium=ios" target="_blank" class="dropdown-item redbubble">RedBubble Shop</a>
           </div>
         </li>
       </ul>
