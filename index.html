@@ -9,7 +9,7 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-gtag(‘config’, ‘G-MB7REKVN1J’);
+gtag('config', 'G-MB7REKVN1J');
 </script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -516,9 +516,34 @@ footer {
   background-color: rgba(255, 170, 255, 0.1);
 }
 
+/* Close button - hidden on desktop, shown on mobile */
+.nav-close {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--light-text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.nav-close:hover {
+  background-color: var(--ash-grey);
+  color: var(--cotton-candy);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .nav-toggle {
+    display: block;
+  }
+
+  .nav-close {
     display: block;
   }
   
@@ -629,26 +654,6 @@ footer {
     opacity: 0.9;
   }
 
-  /* Close button for mobile menu */
-  .nav-close {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    background: none;
-    border: none;
-    color: var(--light-text);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-  }
-
-  .nav-close:hover {
-    background-color: var(--ash-grey);
-    color: var(--cotton-candy);
-  }
-
   /* Mobile overlay */
   .nav-overlay {
     position: fixed;
@@ -745,7 +750,6 @@ footer {
     padding: 1rem;
   }
 }
-```
 
   </style>
 </head>
@@ -780,11 +784,10 @@ footer {
       <p class="tagline">From gaming exploits to understanding how systems work - I'm always curious about the mechanics behind the magic.</p>
     </section>
 
-```
 <section class="section">
   <h2>About Me</h2>
   <p>I specialise in analysing systems at a deeper level — identifying edge cases, reverse engineering behaviors, and uncovering unintended functionality. My work often involves going beyond expected use cases to understand how and why systems behave the way they do.</p>
-  <p>I apply the same methodical thinking to both digital systems and hands-on work. From debugging code to maintaining equipment at a carwash, I’ve learned that attention to small details often prevents much larger failures... a principle that holds true across any system.</p>
+  <p>I apply the same methodical thinking to both digital systems and hands-on work. From debugging code to maintaining equipment at a carwash, I've learned that attention to small details often prevents much larger failures... a principle that holds true across any system.</p>
 </section>
 
 <section class="section">
@@ -868,7 +871,6 @@ footer {
   <h2>Philosophy</h2>
   <p>Security isn't just about technology - it's about understanding human behaviour, physical systems, and the unexpected ways they interact. Every system has vulnerabilities; the key is finding them before the wrong people do.</p>
   </section>
-```
 
   </main>
 
@@ -880,7 +882,6 @@ footer {
         <p>Hosted on GitHub Pages</p>
       </div>
 
-```
   <div class="footer-section">
     <h3>About This Site</h3>
     <p>Personal site and portfolio</p>
@@ -897,7 +898,6 @@ footer {
 <div class="footer-bottom">
   <p>Created by Daniel A. • Updated October 2025</p>
 </div>
-```
 
   </footer>
 
@@ -921,61 +921,4 @@ footer {
 
       function closeMobileMenu() {
         navLinks.classList.remove('active');
-        navOverlay.classList.remove('active');
-        dropdown.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-
-      // Mobile menu event listeners
-      navToggle.addEventListener('click', openMobileMenu);
-      navClose.addEventListener('click', closeMobileMenu);
-      navOverlay.addEventListener('click', closeMobileMenu);
-
-      // Desktop dropdown functionality
-      function toggleDropdown(e) {
-        e.preventDefault();
-        dropdown.classList.toggle('active');
-      }
-
-      dropdownToggle.addEventListener('click', toggleDropdown);
-
-      // Close dropdown when clicking outside (desktop only)
-      document.addEventListener('click', function(e) {
-        if (window.innerWidth > 768 && !dropdown.contains(e.target)) {
-          dropdown.classList.remove('active');
-        }
-      });
-
-      // Close dropdown on escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          dropdown.classList.remove('active');
-          closeMobileMenu();
-        }
-      });
-
-      // Prevent dropdown from closing when clicking inside the menu
-      dropdownMenu.addEventListener('click', function(e) {
-        e.stopPropagation();
-      });
-
-      // Handle window resize
-      window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-          closeMobileMenu();
-        }
-      });
-
-      // Handle support links in mobile menu
-      const supportLinks = document.querySelectorAll('.dropdown-item');
-      supportLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          // Small delay to allow the link to open before closing menu
-          setTimeout(closeMobileMenu, 100);
-        });
-      });
-    });
-  </script>
-
-</body>
-</html>
+        navOverlay.classList.remove
