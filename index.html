@@ -148,11 +148,11 @@ nav {
   color: var(--slate-grey);
   background-color: rgba(255, 170, 255, 0.1);
 }
-
 .dropdown-toggle::after {
   content: "▼";
   font-size: 0.8rem;
   transition: transform 0.3s ease;
+  margin-left: 10px; /* or adjust this value to move arrow right */
 }
 
 .dropdown.active .dropdown-toggle::after {
