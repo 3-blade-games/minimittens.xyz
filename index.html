@@ -745,8 +745,18 @@ footer {
     padding: 1rem;
   }
 }
-```
-/* Hide close button on desktop */
+
+/* Show close button by default (mobile) */
+.nav-close {
+  display: block;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* Hide close button on screens wider than 768px (desktop) */
 @media (min-width: 769px) {
   .nav-close {
     display: none;
